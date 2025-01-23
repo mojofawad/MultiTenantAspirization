@@ -1,0 +1,44 @@
+{
+  "projectPath": ".",
+  "inputPath": "aspirate-output",
+  "namespace": "please-work",
+  "containerImageTags": [
+    "latest"
+  ],
+  "imagePullPolicy": "IfNotPresent",
+  "containerBuilder": "docker",
+  "kubeContext": "docker-desktop",
+  "outputFormat": "kustomize",
+  "privateRegistryEmail": "aspir8@aka.ms",
+  "includeDashboard": true,
+  "useCustomNamespace": true,
+  "secrets": {
+    "salt": "VOQe8kjJKSKSiXfQ",
+    "hash": "JFiuU8kS5D\u002BoNK0ccDpBbry8GvGN\u002BkLb5ZXUu9SKEX0=",
+    "secrets": {
+      "postgres-password": {
+        "value": "VOQe8kjJKSKSiXfQblrdVgymVqggYCW1Ou75S83PvTCaPffxQnsSW\u002BW9mD68AfBRdxc="
+      },
+      "username": {
+        "value": "VOQe8kjJKSKSiXfQEe8bEBHeZeFbcbCzvwko9/\u002BepSmN"
+      },
+      "password": {
+        "value": "VOQe8kjJKSKSiXfQEe8bEBHeZeFbcbCzvwko9/\u002BepSmN"
+      },
+      "postgres": {
+        "POSTGRES_PASSWORD": "VOQe8kjJKSKSiXfQblrdVgymVqggYCW1Ou75S83PvTCaPffxQnsSW\u002BW9mD68AfBRdxc="
+      },
+      "authdb": {},
+      "keycloak": {},
+      "authserver": {
+        "ConnectionStrings__authdb": "VOQe8kjJKSKSiXfQFcvJOL1XEQPXpe/gpDJ\u002B29aVuzTeD9nvZEktW\u002BbPrhSeIvwNLnUbbu4Q/jFc/mL6Ywb7tYRBjG8JR6MBCSPCvT6sbHU35qkYrFcmskfgybv1MXP2\u002B/mn\u002Bgj6wuAQNnXKnajtJ86Am5UB"
+      },
+      "allow-all-api": {},
+      "allow-authorized-api": {},
+      "apigateway": {},
+      "webfrontend": {}
+    }
+  },
+  "processAllComponents": true,
+  "isRunning": true
+}

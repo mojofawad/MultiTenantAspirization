@@ -1,35 +1,46 @@
-namespace MultiTenantAspirization.Web;
+using MultiTenantAspirization.Web;
+using MultiTenantAspirization.Web.Services;
 
-public class WeatherApiClient(HttpClient httpClient)
+public class WeatherApiClient
 {
-    public Task<WeatherForecast[]> GetPublicWeatherAsync(int maxItems = 10, CancellationToken cancellationToken = default)
-        => GetWeatherAsync("/weatherforecast", maxItems, cancellationToken);
+    private readonly HttpClient _httpClient;
+    private readonly CurrentOrganizationService _orgService;
 
-    public Task<WeatherForecast[]> GetAuthorizedWeatherAsync(int maxItems = 10, CancellationToken cancellationToken = default)
-        => GetWeatherAsync("/authorized/weatherforecast", maxItems, cancellationToken);
-
-    private async Task<WeatherForecast[]> GetWeatherAsync(string endpoint, int maxItems, CancellationToken cancellationToken)
+    public WeatherApiClient(HttpClient httpClient, CurrentOrganizationService orgService)
     {
-        List<WeatherForecast>? forecasts = null;
-
-        await foreach (var forecast in httpClient.GetFromJsonAsAsyncEnumerable<WeatherForecast>(endpoint, cancellationToken))
-        {
-            if (forecasts?.Count >= maxItems)
-            {
-                break;
-            }
-            if (forecast is not null)
-            {
-                forecasts ??= [];
-                forecasts.Add(forecast);
-            }
-        }
-
-        return forecasts?.ToArray() ?? [];
+        _httpClient = httpClient;
+        _orgService = orgService;
     }
-}
 
-public record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    private void AddOrgHeader(HttpRequestMessage request)
+    {
+        var orgId = _orgService.GetCurrentOrganizationId();
+        if (orgId.HasValue)
+        {
+            request.Headers.Add("X-Organization-Id", orgId.Value.ToString());
+        }
+    }
+
+    public async Task<WeatherForecast[]> GetPublicWeatherAsync()
+    {
+        var request = new HttpRequestMessage(HttpMethod.Get, "/weatherforecast");
+        AddOrgHeader(request);
+        
+        var response = await _httpClient.SendAsync(request);
+        return await response.Content.ReadFromJsonAsync<WeatherForecast[]>() ?? [];
+    }
+
+    public async Task<WeatherForecast[]> GetAuthorizedWeatherAsync()
+    {
+        var request = new HttpRequestMessage(HttpMethod.Get, "/authorized/weatherforecast");
+        AddOrgHeader(request);
+        
+        var response = await _httpClient.SendAsync(request);
+        if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+        {
+            return Array.Empty<WeatherForecast>();
+        }
+        
+        return await response.Content.ReadFromJsonAsync<WeatherForecast[]>() ?? [];
+    }
 }

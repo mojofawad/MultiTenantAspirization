@@ -10,4 +10,9 @@
     <ProjectReference Include="..\MultiTenantAspirization.ServiceDefaults\MultiTenantAspirization.ServiceDefaults.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Aspire.Keycloak.Authentication" Version="9.0.0-preview.5.24551.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="9.0.0" />
+  </ItemGroup>
+
 </Project>

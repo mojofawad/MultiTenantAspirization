@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MultiTenantAspirization.AllowAll\MultiTenantAspirization.AllowAll.csproj" />
     <ProjectReference Include="..\MultiTenantAspirization.AllowAuthorized\MultiTenantAspirization.AllowAuthorized.csproj" />
+    <ProjectReference Include="..\MultiTenantAspirization.Authorization\MultiTenantAspirization.Authorization.csproj" />
     <ProjectReference Include="..\MultiTenantAspirization.Gateway\MultiTenantAspirization.Gateway.csproj" />
     <ProjectReference Include="..\MultiTenantAspirization.Web\MultiTenantAspirization.Web.csproj" />
   </ItemGroup>
@@ -21,6 +22,7 @@
   <ItemGroup>
     <PackageReference Include="Aspire.Hosting.AppHost" Version="9.0.0" />
     <PackageReference Include="Aspire.Hosting.Keycloak" Version="9.0.0-preview.5.24551.3" />
+    <PackageReference Include="Aspire.Hosting.PostgreSQL" Version="9.0.0" />
   </ItemGroup>
 
 </Project>

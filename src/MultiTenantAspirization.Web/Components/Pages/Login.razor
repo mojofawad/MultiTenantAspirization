@@ -1,0 +1,17 @@
+﻿@page "/login"
+@inject NavigationManager Navigation
+@inject IConfiguration Configuration
+
+<h3>Login</h3>
+
+<button class="btn btn-primary" @onclick="LoginWithKeycloak">
+    Login with Keycloak
+</button>
+
+@code {
+    private void LoginWithKeycloak()
+    {
+        var returnUrl = Navigation.Uri;
+        Navigation.NavigateTo($"connect/auth?returnUrl={Uri.EscapeDataString(returnUrl)}", true);
+    }
+}

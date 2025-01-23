@@ -1,0 +1,6 @@
+@MultiTenantAspirization.Authorization_HostAddress = http://localhost:5138
+
+GET {{MultiTenantAspirization.Authorization_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

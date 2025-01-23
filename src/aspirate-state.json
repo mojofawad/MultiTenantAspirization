@@ -1,0 +1,27 @@
+{
+  "projectPath": ".\\MultiTenantAspirization.AppHost\\MultiTenantAspirization.AppHost.csproj",
+  "inputPath": "aspirate-output",
+  "containerImageTags": [
+    "latest"
+  ],
+  "containerBuilder": "docker",
+  "kubeContext": "docker-desktop",
+  "outputFormat": "kustomize",
+  "privateRegistryEmail": "aspir8@aka.ms",
+  "secrets": {
+    "salt": "1Xc0ipkhYhHkQMgb",
+    "hash": "zuVGmyduhjsjQhjj6ZnUdqxynml/xgftv9aZ\u002BG5mFB0=",
+    "secrets": {
+      "postgres-password": {
+        "value": "1Xc0ipkhYhHkQMgbpRkYgJvAuR2SGDOpbH1jBc1s9FJxRoxIduKnrxxAf8UzGWvedfo="
+      },
+      "username": {
+        "value": "1Xc0ipkhYhHkQMgbcQ5UdcMG0hsLGTXAsYG1WsQ40wNL"
+      },
+      "password": {
+        "value": "1Xc0ipkhYhHkQMgbcQ5UdcMG0hsLGTXAsYG1WsQ40wNL"
+      }
+    }
+  },
+  "processAllComponents": true
+}
